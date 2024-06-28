@@ -1,8 +1,10 @@
 # TỔNG QUAN VỀ OPEN-VSWITCH
 
 Mục lục:
-- 1. Tổng quan về Open vSwitch
-- 2. 
+1. Tổng quan về Open vSwitch
+  - Kiến trúc
+  - Thành phần
+2. Tổng kết
 
 
 ## Tổng quan về Open vSwitch:
@@ -62,6 +64,17 @@ Mục lục:
 - Thông thường, ```ovs-vswitchd``` sẽ xử lý gói tin này, và tạo ra một flow tương ứng gửi đến ```datapath``` để nếu sau này có gói tin tương tự thì sẽ được xử lý theo flow đã được tạo ở trên. 
 
 - Sự thật là hiệu suất của packet forwarding của OVS cao đó là vì hầu hết các gói tin đều sẽ match thành công 1 hoặc nhiều flows ở datapath. Và một khi được match ở datapath rồi thì gói tin sẽ được xử lý trực tiếp ở kernel space - nơi xử lý gói tin nhanh hơn rất nhiều so với user space.
+
+- Các loại Datapath mà OVS hỗ trợ:
+  - Linux upstream: là Datapath triển khai bởi module của Kernel đi với bản phát hành của Linux
+
+  - Linux OVS tree: là Datapath triển khai bởi module của Kernel phát hành cùng với OVS tree của OVS. 
+
+  - Userspace Datapath: là Datapath cho phép cấu hình và chuyển tiếp gói tin ở userspace. Điển hình có thể kể đến là DPDK
+
+  - Hyper-V: là Window Datapath
+
+  
 
 
 #### 4. Xử lý gói tin trong OVS:
